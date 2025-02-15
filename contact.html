@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Empire Builders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./bootstrap.min (2).css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="./script.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <style>
+        #chatbot {
+            transition: all 0.3s ease;
+            z-index: 1050;
+        }
+
+        #chatbot .card {
+            border: none;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #chatbotMessages {
+            scrollbar-width: thin;
+            scrollbar-color: #dee2e6 #ffffff;
+        }
+
+        #chatbotMessages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #chatbotMessages::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+
+        #chatbotMessages::-webkit-scrollbar-thumb {
+            background-color: #dee2e6;
+            border-radius: 3px;
+        }
+
+        .alert {
+            margin-bottom: 0.5rem !important;
+            padding: 0.5rem 1rem;
+        }
+
+        .alert-primary {
+            background-color: #e3f2fd;
+            border-color: #90caf9;
+            color: #0d47a1;
+        }
+
+        .alert-info {
+            background-color: #f5f5f5;
+            border-color: #e0e0e0;
+            color: #424242;
+        }
+
+        /* Hover effect for the buttons */
+        .btn.rounded-circle {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn.rounded-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        .hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: rgba(0, 123, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
+        }
+
+        .hover-effect:hover .icon-circle {
+            transform: scale(1.1);
+        }
+
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .col-md-6 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+
+        /* Card animations */
+        .card {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stagger animation for cards */
+        .card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+    </style>
+</head>
+
+<body>
+       <!-- Navbar -->
+       <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="https://i.postimg.cc/CxH08TsR/logo-1.png" alt="Empire Builders" height="50" class="me-2">
+            Empire Builders
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="projects.html">Projects</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="contact.html">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <br><br><br>
+
+    <!-- Hero Section -->
+    <section class="py-5 bg-dark text-white text-center"
+        style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://i.postimg.cc/jdVKKVFk/1533823206296.jpg') center/cover;">
+        <div class="container py-5">
+            <h1 class="display-4" style="color: white;">Our Story</h1>
+            <p class="lead">Building sustainable futures through innovative architecture since 2015.</p>
+        </div>
+    </section>
+    <br><br>
+    <!-- Main Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="row gy-4">
+                <!-- Contact Information -->
+                <div class="col-lg-4">
+                    <div class="contact-info">
+                        <!-- Visit Us -->
+                        <div class="card contact-card mb-4">
+                            <div class="card-body text-center p-4">
+                                <div class="icon-circle">
+                                    <i class="fas fa-map-marker-alt text-primary fs-2"></i>
+                                </div>
+                                <h3 class="h5 mb-3">Visit Us</h3>
+                                <p class="mb-0">123 Eco Street<br>Green City, 12345<br>United States</p>
+                            </div>
+                        </div>
+
+                        <!-- Call Us -->
+                        <div class="card contact-card mb-4">
+                            <div class="card-body text-center p-4">
+                                <div class="icon-circle">
+                                    <i class="fas fa-phone text-primary fs-2"></i>
+                                </div>
+                                <h3 class="h5 mb-3">Call Us</h3>
+                                <p class="mb-0">
+                                    Main: +1 (555) 123-4567<br>
+                                    Fax: +1 (555) 123-4568<br>
+                                    Toll-free: 1-800-GREEN-ARCH
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Email Us -->
+                        <div class="card contact-card mb-4">
+                            <div class="card-body text-center p-4">
+                                <div class="icon-circle">
+                                    <i class="fas fa-envelope text-primary fs-2"></i>
+                                </div>
+                                <h3 class="h5 mb-3">Email Us</h3>
+                                <p class="mb-0">
+                                    info@empirebuilders.com<br>
+                                    projects@empirebuilders.com<br>
+                                    careers@empirebuilders.com
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Business Hours -->
+                        <div class="card contact-card">
+                            <div class="card-body text-center p-4">
+                                <div class="icon-circle">
+                                    <i class="fas fa-clock text-primary fs-2"></i>
+                                </div>
+                                <h3 class="h5 mb-3">Business Hours</h3>
+                                <p class="mb-0">
+                                    Monday - Friday: 9:00 AM - 6:00 PM<br>
+                                    Saturday: 10:00 AM - 2:00 PM<br>
+                                    Sunday: Closed
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="col-lg-8">
+                    <div class="form-section p-4 p-lg-5">
+                        <h2 class="text-center mb-4">Send Us a Message</h2>
+                        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="needs-validation" novalidate>
+                            <!-- Web3Forms Access Key -->
+                            <input type="hidden" name="access_key" value="d24c9f25-e359-48f5-88c5-26c8fea0a754">
+                            <input type="hidden" name="subject" value="New Contact Form Submission">
+                            <input type="hidden" name="from_name" value="Empire Builders Website">
+                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                            <div class="row g-4">
+                                <!-- Name -->
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                                        <label for="name">Full Name *</label>
+                                    </div>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                                        <label for="email">Email Address *</label>
+                                    </div>
+                                </div>
+
+                                <!-- Phone -->
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Your Phone">
+                                        <label for="phone">Phone Number</label>
+                                    </div>
+                                </div>
+
+                                <!-- Subject -->
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="subject" name="subject" required>
+                                            <option value="">Select a subject</option>
+                                            <option value="general">General Inquiry</option>
+                                            <option value="project">Project Discussion</option>
+                                            <option value="quote">Request Quote</option>
+                                            <option value="partnership">Partnership Opportunity</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <label for="subject">Subject *</label>
+                                    </div>
+                                </div>
+
+                                <!-- Message -->
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" id="message" name="message" style="height: 150px" required></textarea>
+                                        <label for="message">Your Message *</label>
+                                    </div>
+                                </div>
+
+                                <!-- Newsletter & Privacy -->
+                                <div class="col-12">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter">
+                                        <label class="form-check-label" for="newsletter">
+                                            Subscribe to our newsletter
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="privacy" name="privacy" required>
+                                        <label class="form-check-label" for="privacy">
+                                            I agree to the privacy policy *
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg px-5">
+                                        <span class="submit-text">Send Message</span>
+                                        <div class="spinner-border spinner-border-sm ms-2 d-none" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Our Location</h2>
+            <div class="ratio ratio-21x9">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1234.5678!2d-123.4567!3d12.3456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDM0JzU2LjgiTiAxMjPCsDQ1JzY3LjgiVw!5e0!3m2!1sen!2sus!4v1234567890"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="position-fixed end-0 me-3" style="bottom: 20px; z-index: 1050;">
+        <!-- Stacked buttons container with gap -->
+        <div class="d-flex flex-column gap-3">
+            <!-- WhatsApp Button -->
+            <a href="https://wa.me/918891429529" class="btn btn-success rounded-circle p-0 shadow-sm"
+                style="width: 60px; height: 60px;" target="_blank" data-bs-toggle="tooltip" data-bs-placement="left"
+                title="Chat on WhatsApp">
+                <img src="https://i.postimg.cc/ZRYpLrMt/c-HJpdm-F0-ZS9sci9pb-WFn-ZXMvd2-Vic2l0-ZS8y-MDIy-LTA1-L3-Jt-NTM1-LXNv-Y2lhb-C0w-MDRh-Ln-Bu-Zw.webp"
+                    alt="WhatsApp" class="w-100 h-100 rounded-circle">
+            </a>
+
+            <!-- Chatbot Button -->
+            <button class="btn btn-primary rounded-circle p-0 shadow-sm" style="width: 60px; height: 60px;"
+                onclick="window.chatbot.toggleChatbot()" data-bs-toggle="tooltip" data-bs-placement="left"
+                title="Chat with us">
+                <img src="https://i.postimg.cc/1XfFkySv/chat-bot-icon-virtual-smart-600nw-2478937553.webp" alt="Chat"
+                    class="w-100 h-100 rounded-circle">
+            </button>
+        </div>
+    </div>
+
+    <!-- Chatbot -->
+    <div class="position-fixed bottom-0 end-0 mb-5 me-3" id="chatbot" style="display: none; z-index: 1050;">
+        <div class="card shadow" style="width: 300px;">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Chat with Us</h5>
+                <button type="button" class="btn-close btn-close-white"
+                    onclick="window.chatbot.toggleChatbot()"></button>
+            </div>
+            <div class="card-body" id="chatbotMessages" style="height: 300px; overflow-y: auto;">
+                <div class="alert alert-info mb-2">Hello, sir/madam! How can I assist you today?</div>
+            </div>
+            <div class="card-footer bg-light">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="userInput" placeholder="Type your message..."
+                        onkeypress="if(event.key === 'Enter') window.chatbot.sendMessage()">
+                    <button class="btn btn-primary" onclick="window.chatbot.sendMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h4 class="h5 mb-3">Contact Us</h4>
+                    <p class="mb-1">Email: info@greentodayarch.com</p>
+                    <p class="mb-1">Phone: +1 (555) 123-4567</p>
+                    <p class="mb-0">Address: 123 Eco Street, Green City, 12345</p>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="h5 mb-3">Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white text-decoration-none">Home</a></li>
+                        <li><a href="about.html" class="text-white text-decoration-none">About</a></li>
+                        <li><a href="projects.html" class="text-white text-decoration-none">Projects</a></li>
+                        <li><a href="contact.html" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="h5 mb-3">Follow Us</h4>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white fs-4"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <p class="text-center mb-0">&copy; 2025 Green Today Architects. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts (Add after footer tag) -->
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- GSAP Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Custom Scripts -->
+
+</body>
+
+</html>
