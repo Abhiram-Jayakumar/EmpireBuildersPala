@@ -25,7 +25,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="https://i.postimg.cc/CxH08TsR/logo-1.png" alt="Empire Builders" height="50" class="me-2">
+                <img src="https://i.postimg.cc/CxH08TsR/logo-1.png" alt="Empire Builders" width="30" height="24" class="me-2">
                 Empire Builders
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -174,20 +174,23 @@
     </div>
 
     <!-- Chatbot -->
-    <div class="position-fixed bottom-0 end-0 mb-5 me-3" id="chatbot" style="display: none;">
-        <div class="card" style="width: 300px;">
+    <div class="position-fixed bottom-0 end-0 mb-5 me-3" id="chatbot" style="display: none; z-index: 1050;">
+        <div class="card shadow" style="width: 300px;">
             <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                 <h5 class="mb-0">Chat with Us</h5>
                 <button type="button" class="btn-close btn-close-white"
                     onclick="window.chatbot.toggleChatbot()"></button>
             </div>
             <div class="card-body" id="chatbotMessages" style="height: 300px; overflow-y: auto;">
-                <div class="bot-message">Hello, sir/madam How can I assist you today?</div>
+                <div class="alert alert-info mb-2">Hello, sir/madam! How can I assist you today?</div>
             </div>
-            <div class="card-footer">
+            <div class="card-footer bg-light">
                 <div class="input-group">
-                    <input type="text" class="form-control" id="userInput" placeholder="Type your message...">
-                    <button class="btn btn-primary" onclick="window.chatbot.sendMessage()">Send</button>
+                    <input type="text" class="form-control" id="userInput" placeholder="Type your message..."
+                        onkeypress="if(event.key === 'Enter') window.chatbot.sendMessage()">
+                    <button class="btn btn-primary" onclick="window.chatbot.sendMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
                 </div>
             </div>
         </div>
