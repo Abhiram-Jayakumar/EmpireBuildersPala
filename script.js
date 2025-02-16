@@ -8,6 +8,8 @@ const enhancedIndexAnimations = {
         });
     },
 
+
+
     // Create dynamic background effect
     createDynamicBackground() {
         const hero = document.querySelector('.hero');
@@ -409,3 +411,29 @@ function showToast(title, message, type = 'success') {
         this.remove();
     });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all navigation links
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+
+    // Add click event to all navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navbarCollapse.classList.contains('show')) {
+                navbarToggler.click();
+            }
+        });
+    });
+
+    // Add click event to the document to close navbar when clicking outside
+    document.addEventListener('click', function(event) {
+        const isNavbarCollapse = navbarCollapse.contains(event.target);
+        const isNavbarToggler = navbarToggler.contains(event.target);
+        
+        if (!isNavbarCollapse && !isNavbarToggler && navbarCollapse.classList.contains('show')) {
+            navbarToggler.click();
+        }
+    });
+});
